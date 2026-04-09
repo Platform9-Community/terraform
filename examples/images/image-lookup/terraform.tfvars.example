@@ -1,0 +1,11 @@
+# Copy this file to terraform.tfvars and fill in values for your environment.
+# terraform.tfvars is excluded from version control via .gitignore.
+
+# Name of the image to look up in the PCD image library
+image_name = "Ubuntu 22.04"
+
+# Filter by visibility: public, private, shared, or community
+visibility = "public"
+
+# Filter by owner project ID (optional -- leave empty to search all projects)
+owner = ""

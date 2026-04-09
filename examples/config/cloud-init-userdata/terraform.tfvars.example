@@ -1,0 +1,28 @@
+# Copy this file to terraform.tfvars and fill in values for your environment.
+# terraform.tfvars is excluded from version control via .gitignore.
+
+# Name for the VM and associated resources
+vm_name = "tf-cloudinit-demo"
+
+# Image name in the PCD image library
+image_name = "Ubuntu 22.04"
+
+# Flavor to use for the VM
+flavor_name = "m1.medium.vol"
+
+# Network to attach the VM to
+network_name = "vmnet"
+
+# Root volume size in GB
+volume_size = 20
+
+# Hostname to set inside the guest OS
+vm_hostname = "tf-cloudinit-demo"
+
+# Packages to install at first boot
+packages = ["nginx", "curl", "htop"]
+
+# SSH public key to inject into the default user's authorized_keys.
+# Paste your public key here (the contents of ~/.ssh/id_rsa.pub).
+# Leave empty to skip SSH key injection.
+ssh_authorized_key = ""

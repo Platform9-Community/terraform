@@ -1,9 +1,10 @@
 # Copy this file to terraform.tfvars and fill in values for your environment.
 # terraform.tfvars is excluded from version control via .gitignore.
 
-# Map of key pair names to local public key file paths.
-# Add or remove entries as needed.
+# Map of key pair names to SSH public key strings.
+# Paste the contents of each public key file as the value
+# (e.g. the output of: cat ~/.ssh/id_rsa.pub)
 keypairs = {
-  "ops-key" = "~/.ssh/id_rsa.pub"
-  "dev-key" = "~/.ssh/id_rsa.pub"
+  "ops-key" = "ssh-rsa AAAA...your-ops-public-key-here"
+  "dev-key" = "ssh-rsa AAAA...your-dev-public-key-here"
 }

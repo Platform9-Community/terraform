@@ -1,0 +1,18 @@
+# Copy this file to terraform.tfvars and fill in values for your environment.
+# terraform.tfvars is excluded from version control via .gitignore.
+
+# Name for the new project (tenant)
+project_name = "tf-demo-project"
+
+# Description for the project
+project_description = "Created by Terraform"
+
+# Username for the new user
+username = "tf-demo-user"
+
+# Password for the new user -- keep this out of version control
+user_password = "changeme"
+
+# Role to assign the user in the project
+# Available roles: member, manager, admin, reader
+role_name = "member"

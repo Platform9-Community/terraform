@@ -9,7 +9,3 @@ snapshot_name = "tf-snapshot"
 
 # Description for the snapshot
 snapshot_description = "Snapshot created by Terraform"
-
-# Force snapshot of an attached/in-use volume. Use with caution -- quiesce
-# the guest OS first for consistent snapshots of running VMs.
-force = false

@@ -1,0 +1,29 @@
+# Copy this file to terraform.tfvars and fill in values for your environment.
+# terraform.tfvars is excluded from version control via .gitignore.
+
+# Number of VMs to deploy
+vm_count = 2
+
+# Name prefix for VMs
+vm_name_prefix = "tf-ansible-target"
+
+# Image name in the PCD image library
+image_name = "Ubuntu 22.04"
+
+# Flavor to use for all VMs
+flavor_name = "m1.medium.vol"
+
+# Network to attach all VMs to
+network_name = "vmnet"
+
+# Root volume size in GB per VM
+volume_size = 20
+
+# SSH user Ansible will connect as (ubuntu for Ubuntu images)
+ansible_user = "ubuntu"
+
+# Path to the SSH private key Ansible will use
+ansible_ssh_private_key_file = "~/.ssh/id_rsa"
+
+# Path to write the generated inventory file after terraform apply
+inventory_output_path = "./inventory.ini"

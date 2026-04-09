@@ -26,12 +26,6 @@ variable "snapshot_description" {
   default     = "Snapshot created by Terraform"
 }
 
-variable "force" {
-  description = "Force snapshot creation even if the volume is attached to a running VM. Use with caution."
-  type        = bool
-  default     = false
-}
-
 # --- Look up existing volume ---
 
 data "openstack_blockstorage_volume_v3" "target" {
@@ -39,24 +33,41 @@ data "openstack_blockstorage_volume_v3" "target" {
 }
 
 # --- Snapshot ---
-# Creates a point-in-time snapshot of the volume. For consistent snapshots
-# of volumes attached to running VMs, quiesce the guest OS before applying,
-# or set force = true. Snapshots can be used to create new volumes or to
-# restore data.
+# terraform-provider-openstack v3 does not expose openstack_blockstorage_snapshot_v3
+# as a managed resource (only as a data source for lookups). Volume snapshots must
+# be created via the OpenStack CLI or API outside of Terraform, or through a
+# terraform_data local-exec as shown below.
+#
+# --force is always passed so the snapshot works whether the volume is attached
+# to a running VM (in-use) or detached (available). For crash-consistent
+# snapshots of running VMs, quiesce the guest OS before applying.
+#
+# Requires the openstack CLI to be installed and OS_* env vars to be set.
 
-resource "openstack_blockstorage_snapshot_v3" "snap" {
-  volume_id   = data.openstack_blockstorage_volume_v3.target.id
-  name        = var.snapshot_name
-  description = var.snapshot_description
-  force       = var.force
+resource "terraform_data" "snap" {
+  triggers_replace = {
+    volume_id   = data.openstack_blockstorage_volume_v3.target.id
+    name        = var.snapshot_name
+    description = var.snapshot_description
+  }
+
+  provisioner "local-exec" {
+    command = <<-EOT
+      openstack volume snapshot create \
+        --volume ${data.openstack_blockstorage_volume_v3.target.id} \
+        --description "${var.snapshot_description}" \
+        --force \
+        ${var.snapshot_name}
+    EOT
+  }
 }
 
 # --- Outputs ---
 
-output "snapshot_id" {
-  value = openstack_blockstorage_snapshot_v3.snap.id
+output "volume_id_snapshotted" {
+  value = data.openstack_blockstorage_volume_v3.target.id
 }
 
-output "snapshot_size_gb" {
-  value = openstack_blockstorage_snapshot_v3.snap.size
+output "snapshot_name" {
+  value = var.snapshot_name
 }

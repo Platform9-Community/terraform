@@ -1,0 +1,30 @@
+# Secrets and credentials
+*.pem
+*.key
+*.env
+.env*
+secrets/
+*rc
+*clouds.yaml
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+crash.log
+override.tf
+override.tf.json
+*.tfplan
+*.tfvars
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.claudeignore
+.idea/
+.vscode/
+*.swp
+*.swo

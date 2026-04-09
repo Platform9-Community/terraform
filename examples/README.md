@@ -12,9 +12,12 @@ everything needed to run it independently.
 | [networking](networking/) | Tenant networks, routers, and floating IPs |
 | [multi-vm](multi-vm/) | Multi-VM fleets and multi-tier architectures |
 | [storage](storage/) | Additional volumes and snapshots |
-| [images](images/) | Image upload and management |
+| [images](images/) | Image lookup and filtering by name, visibility, and owner |
 | [access](access/) | SSH key pair management |
 | [day2](day2/) | VM resize, security group updates, and other day-2 operations |
+| [config](config/) | Guest OS configuration via cloud-init user data |
+| [identity](identity/) | Projects, users, and role assignments |
+| [integrations](integrations/) | Terraform outputs and integrations with other tools |
 
 ## Getting Started
 

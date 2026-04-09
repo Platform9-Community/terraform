@@ -86,12 +86,22 @@ resource "openstack_blockstorage_volume_v3" "root_vol" {
   image_id = data.openstack_images_image_v2.image.id
 }
 
+# --- Network port ---
+# In provider v3, floating IP association requires a port ID, not an instance ID.
+# Creating an explicit port lets us attach the security group at the Neutron level
+# and gives us the port ID needed for openstack_networking_floatingip_associate_v2.
+
+resource "openstack_networking_port_v2" "port" {
+  name               = "${var.vm_name}-port"
+  network_id         = data.openstack_networking_network_v2.tenant_net.id
+  security_group_ids = [openstack_networking_secgroup_v2.sg.id]
+}
+
 # --- VM instance ---
 
 resource "openstack_compute_instance_v2" "vm" {
-  name            = var.vm_name
-  flavor_name     = var.flavor_name
-  security_groups = [openstack_networking_secgroup_v2.sg.name]
+  name        = var.vm_name
+  flavor_name = var.flavor_name
 
   block_device {
     uuid                  = openstack_blockstorage_volume_v3.root_vol.id
@@ -102,7 +112,7 @@ resource "openstack_compute_instance_v2" "vm" {
   }
 
   network {
-    name = data.openstack_networking_network_v2.tenant_net.name
+    port = openstack_networking_port_v2.port.id
   }
 }
 
@@ -110,14 +120,16 @@ resource "openstack_compute_instance_v2" "vm" {
 # Allocates a floating IP from the external network and associates it
 # with the VM's port on the tenant network. Equivalent to a NAT rule
 # on an NSX edge or a vSphere VM with a static one-to-one NAT.
+# Provider v3 uses openstack_networking_floatingip_associate_v2 (Neutron),
+# not the deprecated openstack_compute_floatingip_associate_v2 (Nova).
 
 resource "openstack_networking_floatingip_v2" "fip" {
   pool = data.openstack_networking_network_v2.external.name
 }
 
-resource "openstack_compute_floatingip_associate_v2" "fip_assoc" {
+resource "openstack_networking_floatingip_associate_v2" "fip_assoc" {
   floating_ip = openstack_networking_floatingip_v2.fip.address
-  instance_id = openstack_compute_instance_v2.vm.id
+  port_id     = openstack_networking_port_v2.port.id
 }
 
 # --- Outputs ---
