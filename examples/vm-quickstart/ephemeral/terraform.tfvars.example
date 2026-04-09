@@ -1,0 +1,14 @@
+# Copy this file to terraform.tfvars and fill in values for your environment.
+# terraform.tfvars is excluded from version control via .gitignore.
+
+# Name of the image in the PCD image library
+image_name = "Ubuntu 22.04"
+
+# Flavor to use for the VM (disk size is determined by the flavor)
+flavor_name = "m1.medium"
+
+# Name of the existing network to attach the VM to
+network_name = "vmnet"
+
+# Name for the VM and associated resources
+vm_name = "tf-demo-vm"

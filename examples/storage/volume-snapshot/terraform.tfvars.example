@@ -1,0 +1,15 @@
+# Copy this file to terraform.tfvars and fill in values for your environment.
+# terraform.tfvars is excluded from version control via .gitignore.
+
+# Name of the existing volume to snapshot
+volume_name = "my-volume"
+
+# Name for the snapshot
+snapshot_name = "tf-snapshot"
+
+# Description for the snapshot
+snapshot_description = "Snapshot created by Terraform"
+
+# Force snapshot of an attached/in-use volume. Use with caution -- quiesce
+# the guest OS first for consistent snapshots of running VMs.
+force = false

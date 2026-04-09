@@ -1,0 +1,19 @@
+# Copy this file to terraform.tfvars and fill in values for your environment.
+# terraform.tfvars is excluded from version control via .gitignore.
+
+# Name for the VM
+vm_name = "tf-resize-demo"
+
+# Image name in the PCD image library
+image_name = "Ubuntu 22.04"
+
+# Flavor for the VM. Change this value and run terraform apply to resize.
+# Start small, then scale up:
+#   m1.small.vol  -> m1.medium.vol -> m1.large.vol
+flavor_name = "m1.small.vol"
+
+# Network to attach the VM to
+network_name = "vmnet"
+
+# Root volume size in GB
+volume_size = 20

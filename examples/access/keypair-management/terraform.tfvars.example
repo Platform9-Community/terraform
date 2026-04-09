@@ -1,0 +1,9 @@
+# Copy this file to terraform.tfvars and fill in values for your environment.
+# terraform.tfvars is excluded from version control via .gitignore.
+
+# Map of key pair names to local public key file paths.
+# Add or remove entries as needed.
+keypairs = {
+  "ops-key" = "~/.ssh/id_rsa.pub"
+  "dev-key" = "~/.ssh/id_rsa.pub"
+}

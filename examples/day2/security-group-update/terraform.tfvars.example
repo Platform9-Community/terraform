@@ -1,0 +1,18 @@
+# Copy this file to terraform.tfvars and fill in values for your environment.
+# terraform.tfvars is excluded from version control via .gitignore.
+
+# Name of the security group to manage
+security_group_name = "tf-managed-sg"
+
+# Toggle rules on or off -- change values and run terraform apply to update
+allow_ssh   = true
+allow_icmp  = true
+allow_http  = false
+allow_https = false
+
+# Restrict SSH to a specific CIDR (e.g. your office IP range)
+# Use 0.0.0.0/0 to allow SSH from anywhere
+ssh_cidr = "0.0.0.0/0"
+
+# Additional TCP ports to open (e.g. [8080, 9090])
+custom_tcp_ports = []

@@ -1,0 +1,20 @@
+# Copy this file to terraform.tfvars and fill in values for your environment.
+# terraform.tfvars is excluded from version control via .gitignore.
+
+# Name for the new tenant network
+network_name = "demo-network"
+
+# Name for the subnet
+subnet_name = "demo-subnet"
+
+# CIDR block for the subnet
+subnet_cidr = "192.168.100.0/24"
+
+# DNS nameservers for the subnet
+dns_nameservers = ["8.8.8.8", "8.8.4.4"]
+
+# Name for the virtual router
+router_name = "demo-router"
+
+# Name of the existing provider network to use as the router's external gateway
+external_network_name = "vmnet"

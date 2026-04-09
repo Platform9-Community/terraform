@@ -1,0 +1,17 @@
+# Copy this file to terraform.tfvars and fill in values for your environment.
+# terraform.tfvars is excluded from version control via .gitignore.
+
+# Image name in the PCD image library
+image_name = "Ubuntu 22.04"
+
+# Flavor for the web tier VM
+web_flavor = "m1.medium.vol"
+
+# Flavor for the database tier VM
+db_flavor = "m1.large.vol"
+
+# Network to attach both VMs to
+network_name = "vmnet"
+
+# Root volume size in GB (applies to both VMs)
+volume_size = 20

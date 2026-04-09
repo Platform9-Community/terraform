@@ -1,0 +1,20 @@
+# Copy this file to terraform.tfvars and fill in values for your environment.
+# terraform.tfvars is excluded from version control via .gitignore.
+
+# Number of VMs to deploy
+vm_count = 3
+
+# Name prefix for VMs -- VMs will be named <prefix>-01, <prefix>-02, etc.
+vm_name_prefix = "tf-fleet"
+
+# Image name in the PCD image library
+image_name = "Ubuntu 22.04"
+
+# Flavor to use for all VMs
+flavor_name = "m1.medium.vol"
+
+# Network to attach all VMs to
+network_name = "vmnet"
+
+# Root volume size in GB per VM
+volume_size = 20

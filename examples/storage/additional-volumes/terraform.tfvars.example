@@ -1,0 +1,23 @@
+# Copy this file to terraform.tfvars and fill in values for your environment.
+# terraform.tfvars is excluded from version control via .gitignore.
+
+# Name for the VM and associated resources
+vm_name = "tf-multivol-demo"
+
+# Image name in the PCD image library
+image_name = "Ubuntu 22.04"
+
+# Flavor to use for the VM
+flavor_name = "m1.medium.vol"
+
+# Network to attach the VM to
+network_name = "vmnet"
+
+# Root volume size in GB
+root_volume_size = 20
+
+# Data volume size in GB
+data_volume_size = 50
+
+# Log volume size in GB
+log_volume_size = 20

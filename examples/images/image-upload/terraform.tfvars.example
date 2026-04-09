@@ -1,0 +1,24 @@
+# Copy this file to terraform.tfvars and fill in values for your environment.
+# terraform.tfvars is excluded from version control via .gitignore.
+
+# Name for the image in the PCD image library
+image_name = "my-custom-image"
+
+# Local path to the image file to upload
+# For VMDK images exported from vSphere, update disk_format to "vmdk"
+image_local_path = "./image.qcow2"
+
+# Disk format: qcow2, raw, vmdk, vhd
+disk_format = "qcow2"
+
+# Container format -- bare for almost all cases
+container_format = "bare"
+
+# Visibility: public (available to all projects) or private (current project only)
+visibility = "public"
+
+# Minimum disk size in GB required to boot this image
+min_disk_gb = 10
+
+# Minimum RAM in MB required to boot this image
+min_ram_mb = 512

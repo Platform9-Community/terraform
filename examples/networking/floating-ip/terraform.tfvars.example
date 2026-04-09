@@ -1,0 +1,20 @@
+# Copy this file to terraform.tfvars and fill in values for your environment.
+# terraform.tfvars is excluded from version control via .gitignore.
+
+# Name for the VM
+vm_name = "tf-floating-ip-demo"
+
+# Image name in the PCD image library
+image_name = "Ubuntu 22.04"
+
+# Flavor to use for the VM
+flavor_name = "m1.medium.vol"
+
+# Tenant network to attach the VM to (must have a router with external gateway)
+network_name = "demo-network"
+
+# Provider network to allocate the floating IP from
+external_network_name = "vmnet"
+
+# Root volume size in GB
+volume_size = 20
